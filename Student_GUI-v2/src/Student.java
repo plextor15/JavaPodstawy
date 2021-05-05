@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Student {
+public class Student implements Serializable {
 	String imie;
 	String nazwisko;
 	
@@ -10,5 +11,9 @@ public class Student {
 	Student(String imie, String nazwisko){
 		this.imie = imie;
 		this.nazwisko = nazwisko;
+	}
+	
+	public String toString() {
+		return imie + " " + nazwisko + " ";
 	}
 }

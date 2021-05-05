@@ -12,14 +12,6 @@ public class DodanieOceny {
 	 * Launch the application.
 	 * @param args
 	 */
-//	public static void main(String[] args) {
-//		try {
-//			DodanieOceny window = new DodanieOceny();
-//			window.open();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 	/**
 	 * Open the window.
