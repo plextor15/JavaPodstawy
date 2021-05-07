@@ -47,7 +47,7 @@ public class Student_GUI {
 		
 		Display display = Display.getDefault();
 		Shell shlStudentGui = new Shell();
-		shlStudentGui.setSize(463, 422);
+		shlStudentGui.setSize(463, 368);
 		shlStudentGui.setText("Student GUI");
 		
 		Button btnStudentWybrany = new Button(shlStudentGui, SWT.CHECK);
@@ -68,11 +68,11 @@ public class Student_GUI {
 		
 		Button btnDodajPrzedmiot = new Button(shlStudentGui, SWT.NONE);
 		btnDodajPrzedmiot.setGrayed(true);
-		btnDodajPrzedmiot.setBounds(318, 61, 119, 25);
+		btnDodajPrzedmiot.setBounds(318, 289, 119, 25);
 		btnDodajPrzedmiot.setText("Dodaj przedmiot");
 		
 		Button btnDodajOcene = new Button(shlStudentGui, SWT.NONE);
-		btnDodajOcene.setBounds(318, 92, 119, 25);
+		btnDodajOcene.setBounds(318, 61, 119, 25);
 		btnDodajOcene.setText("Dodaj ocene");
 		
 		Button btnWybierz = new Button(shlStudentGui, SWT.NONE);
@@ -91,6 +91,11 @@ public class Student_GUI {
 		lista.setBounds(10, 30, 284, 97);
 //		for(int i=0; i < GlownaListaStudentow.size(); i++) {	
 //		}
+		lista.removeAll();
+		for(int i=0; i < GlownaListaStudentow.size(); i++) {
+			lista.add(GlownaListaStudentow.get(i).imie + " " + GlownaListaStudentow.get(i).nazwisko);
+			//lista.add(NazwaPliku);
+		}
 		
 		//listenery
 		btnDodajStudenta.addMouseListener(new MouseAdapter() {
