@@ -87,8 +87,8 @@ public class Konto {
 			public void mouseDown(MouseEvent e) {
 				lblSaldo.setText(Float.toString(Saldo));
 				
-				/*TableItem items1 = new TableItem(table, SWT.NONE, 1);
-				TableItem items2 = new TableItem(table, SWT.NONE, 2);
+				TableItem items1 = new TableItem(table, SWT.NONE, 0);
+				TableItem items2 = new TableItem(table, SWT.NONE, 1);
 				
 				for (int i=0; i<Historia.size(); i++) {
 					items1.setText(Historia.get(i).Opis);
@@ -99,7 +99,8 @@ public class Konto {
 						items2.setText("-" + Float.toString(Historia.get(i).Ile));
 					}
 					
-				}*/
+				}
+				
 				/*
 				 * for (int i=0; i<items.length; i++) { 
 				 * 	items [i].setText (index, "Item " + i +
