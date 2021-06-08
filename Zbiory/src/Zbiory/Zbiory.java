@@ -17,6 +17,16 @@ import org.eclipse.swt.widgets.Text;
 public class Zbiory {
 	public static Set<Integer> ZbiorA;
 	public static Set<Integer> ZbiorB;
+	public static Set<Integer> Przeciecie;
+	public static Set<Integer> Suma;
+	public static Set<Integer> RoznicaA;
+	public static Set<Integer> RoznicaB;
+	
+	public static String PrzeciecieStr;
+	public static String SumaStr;
+	public static String RoznicaAStr;
+	public static String RoznicaBStr;
+	
 	private static Text txtIleint;
 	public static int wielkoscZbioru;
 	
@@ -36,9 +46,41 @@ public class Zbiory {
 		ZbiorB = new HashSet<Integer>(wielkoscZbioru);
 		
 		for (int i = 0; i < wielkoscZbioru; i++) {
-			ZbiorA.add(Random());
-			ZbiorB.add(Random());
+			ZbiorA.add( minimum + (Random() % maximum) );
+			ZbiorB.add( minimum + (Random() % maximum) );
 		}
+	}
+	
+	public static void Przetnij() {
+		Przeciecie = new HashSet<Integer>(ZbiorA);
+		Przeciecie.retainAll(ZbiorB);
+		PrzeciecieStr = Przeciecie.toString();
+	}
+	
+	public static void Zsumuj() {
+		Suma = new HashSet<Integer>(ZbiorA);
+		Suma.addAll(ZbiorB);
+		SumaStr = Suma.toString();
+	}
+	
+	public static void ZroznicujA() {
+		RoznicaA = new HashSet<Integer>(ZbiorA);
+		RoznicaA.removeAll(ZbiorB);
+		RoznicaAStr = RoznicaA.toString();
+	}
+	
+	public static void ZroznicujB() {
+		RoznicaB = new HashSet<Integer>(ZbiorB);
+		RoznicaB.removeAll(ZbiorA);
+		RoznicaBStr = RoznicaB.toString();
+	}
+	
+	public static void Deb() {
+		System.out.println("A: " + ZbiorA);
+		System.out.println("B: " + ZbiorB);
+		System.out.println(wielkoscZbioru + "  " + minimum + "  " + maximum + "\n\n");
+		
+		System.out.println(ZbiorA.toString());
 	}
 	/**
 	 * Launch the application.
@@ -63,7 +105,7 @@ public class Zbiory {
 		lblWygenerowano.setAlignment(SWT.CENTER);
 		lblWygenerowano.setBounds(30, 148, 119, 15);
 		lblWygenerowano.setText("Wygenerowano");
-		lblWygenerowano.setVisible(true);
+		lblWygenerowano.setVisible(false);
 		
 		txtIleint = new Text(shlZbiory, SWT.BORDER);
 		txtIleint.setFont(SWTResourceManager.getFont("Segoe UI", 11, SWT.NORMAL));
@@ -91,14 +133,20 @@ public class Zbiory {
 		btnGeneruj.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
-				if (lblWygenerowano.getVisible()) {
-					
+				if (lblWygenerowano.getVisible()) {	
 				} else {
 					if (txtIleint.getText() != "ile liczb") {
 						wielkoscZbioru = Integer.parseInt(txtIleint.getText());
 					} else {
 						wielkoscZbioru = 0;
 					}
+					
+					maximum = Integer.parseInt(maxi.getText());
+					minimum = Integer.parseInt(mini.getText());
+					
+					Generowanie();
+					Deb();
+					
 					lblWygenerowano.setVisible(true);
 				}
 			}
