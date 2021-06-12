@@ -16,6 +16,7 @@ public abstract class Engine extends Level {
 	public Engine() {
 		key = '`';
 		Postep = 0;
+		WcisnietoKlawisz = false;
 	}
 	
 	public void Sterow() {
@@ -122,6 +123,7 @@ public abstract class Engine extends Level {
 			} else {
 				KoniecLevelu(true);
 			}
+			WcisnietoKlawisz = false;
 			Postep++;
 			AktualizacjaWidocznejMapy(Postep);
 			View();

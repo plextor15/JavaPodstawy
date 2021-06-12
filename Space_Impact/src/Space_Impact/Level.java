@@ -43,14 +43,14 @@ public class Level {
 		TGracz = new GameObject('>', Typ.gracz, 4);
 	}
 	
-	private boolean Noclip(int wys) {
-		if (wys > Wysokosc || wys < 0) {
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
+	//private boolean Noclip(int wys) {
+	//	if (wys > Wysokosc || wys < 0) {
+	//		return true;
+	//	}
+	//	else{
+	//		return false;
+	//	}
+	//}
 	private void PrzesunGracza(int wysCel, int szerCel) {
 		if (wysCel < 0 || wysCel > Wysokosc-1){
 			return;

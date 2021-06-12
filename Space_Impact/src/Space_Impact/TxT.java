@@ -2,9 +2,11 @@ package Space_Impact;
 
 public class TxT extends Engine {
 	public String DoWyswietlenia;
+	public boolean czyWygral;
 
 	public TxT() {
 		DoWyswietlenia = "";
+		czyWygral = false;
 	}
 
 	public void View() {
@@ -20,17 +22,7 @@ public class TxT extends Engine {
 			}
 		}
 	}
-	//public void WyswietlTekst(String tekst) {}
 	public void KoniecLevelu(boolean CzyWygrana) {
-		DoWyswietlenia = "\n\n     ";
-		
-		if (CzyWygrana) {
-			DoWyswietlenia += "Poziom ukonczony :)\n";
-		}
-		else{
-			DoWyswietlenia += "Przegrana :(\n";
-		}
-		
-		DoWyswietlenia = DoWyswietlenia + "     Uzyskano punktow: " + String.valueOf(GetPunktyLevel());
+		czyWygral = CzyWygrana;
 	}
 }

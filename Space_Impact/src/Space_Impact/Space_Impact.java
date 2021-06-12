@@ -18,21 +18,21 @@ public class Space_Impact {
 	public static void main(String[] args) {
 		Display display = Display.getDefault();
 		Shell shlSpaceImpact = new Shell();
-		shlSpaceImpact.setSize(872, 746);
+		shlSpaceImpact.setSize(1051, 805);
 		shlSpaceImpact.setText("Space Impact");
 		
 		Label lblTestowy = new Label(shlSpaceImpact, SWT.NONE);
-		lblTestowy.setBounds(10, 10, 719, 225);
+		lblTestowy.setBounds(10, 10, 659, 217);
 		lblTestowy.setText("testowy\ngugu");
 		
 		MessageBox dialog = new MessageBox(shlSpaceImpact, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
 		
 		Button btnDogory = new Button(shlSpaceImpact, SWT.NONE);
-		btnDogory.setBounds(234, 298, 75, 25);
+		btnDogory.setBounds(149, 233, 75, 25);
 		btnDogory.setText("DoGory");
 		
 		Button btnDodolu = new Button(shlSpaceImpact, SWT.NONE);
-		btnDodolu.setBounds(234, 348, 75, 25);
+		btnDodolu.setBounds(149, 283, 75, 25);
 		btnDodolu.setText("DoDolu");
 		
 		
@@ -44,17 +44,45 @@ public class Space_Impact {
 			shlSpaceImpact.close();
 		}
 		
+		TxT Gra = new TxT();
+		Gra.GameLoop();
+		
+		String info;
+		String info2;
+		if (Gra.czyWygral) {
+			info = "Poziom ukonczony :)\n";
+		}
+		else{
+			info = "Przegrana :(\n";
+		}
+		
+		info2 = "Uzyskano punktow: " + String.valueOf(Gra.GetPunktyLevel());
+		
+		MessageBox dialog2 = new MessageBox(shlSpaceImpact, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
+		dialog.setText(info);
+		dialog.setMessage(info2);
+		int retCode = dialog2.open();
+		
+		if (retCode == 32) {
+			shlSpaceImpact.close();
+		}
+		
 		//Listener
 		btnDogory.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
+				Gra.WcisnietoKlawisz = true;
+				Gra.key = 'w';
 			}
 		});
 		btnDodolu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
+				Gra.WcisnietoKlawisz = true;
+				Gra.key = 's';
 			}
 		});
+		
 
 		shlSpaceImpact.open();
 		shlSpaceImpact.layout();
