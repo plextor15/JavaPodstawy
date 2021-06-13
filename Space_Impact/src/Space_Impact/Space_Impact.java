@@ -14,7 +14,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.Canvas;
 
 public class Space_Impact {
 
@@ -25,52 +27,98 @@ public class Space_Impact {
 	public static void main(String[] args) {
 		Display display = Display.getDefault();
 		Shell shlSpaceImpact = new Shell();
-		shlSpaceImpact.setSize(601, 526);
+		shlSpaceImpact.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_GRAY));
+		shlSpaceImpact.setSize(599, 554);
 		shlSpaceImpact.setText("Space Impact");
 		
+		Image wyjscie = new Image(display, "e:/Projector/Zacmienie/Space_Impact/src/Space_Impact/wyjscie.jpg");
+		Image dol = new Image(display, "e:/Projector/Zacmienie/Space_Impact/src/Space_Impact/dol.jpg");
+		Image gora = new Image(display, "e:/Projector/Zacmienie/Space_Impact/src/Space_Impact/gora.jpg");
+		Image krawedzDol = new Image(display, "e:/Projector/Zacmienie/Space_Impact/src/Space_Impact/krawedzDol.jpg");
+		Image krawedzGora = new Image(display, "e:/Projector/Zacmienie/Space_Impact/src/Space_Impact/krawedzGora.jpg");
+		
+		TxT Gra = new TxT();
+		
+		
 		Label lblWysw = new Label(shlSpaceImpact, SWT.NONE);
+		lblWysw.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_GREEN));
 		lblWysw.setFont(SWTResourceManager.getFont("Courier New", 14, SWT.BOLD));
-		lblWysw.setBounds(10, 10, 565, 229);
+		lblWysw.setBounds(10, 70, 565, 229);
 		lblWysw.setText("testowy\ngugu");
+		
+		Label label = new Label(shlSpaceImpact, SWT.SEPARATOR | SWT.HORIZONTAL);
+		
+		
+		label.setBounds(10, 297, 565, 2);
+		
+		Canvas canvasGorny = new Canvas(shlSpaceImpact, SWT.NONE);
+		canvasGorny.setBounds(0, 0, 593, 64);
+		canvasGorny.setBackgroundImage(krawedzGora);
+		
+		Canvas canvasDolny = new Canvas(shlSpaceImpact, SWT.NONE);
+		canvasDolny.setBounds(0, 297, 583, 220);
+		canvasDolny.setBackgroundImage(krawedzDol);
+		
+		Button btnQuit = new Button(canvasDolny, SWT.NONE);
+		btnQuit.setBounds(232, 23, 122, 176);
+		btnQuit.setImage(wyjscie);
+		
+		Button btnDogory = new Button(canvasDolny, SWT.NONE);
+		btnDogory.setBounds(10, 10, 205, 95);
+		btnDogory.setImage(gora);
+		
+		Button btnDodolu = new Button(canvasDolny, SWT.NONE);
+		btnDodolu.setLocation(10, 99);
+		btnDodolu.setSize(205, 100);
+		btnDodolu.setImage(dol);
+		btnDodolu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDown(MouseEvent e) {
+				Gra.WcisnietoKlawisz = true;
+				Gra.key = 's';
+			}
+		});
+		
+		//Listener
+		btnDogory.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDown(MouseEvent e) {
+				Gra.WcisnietoKlawisz = true;
+				Gra.key = 'w';
+			}
+		});
+		
 		
 		MessageBox dialog = new MessageBox(shlSpaceImpact, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
 		
-		Button btnDogory = new Button(shlSpaceImpact, SWT.NONE);
-		btnDogory.setBounds(149, 264, 75, 25);
-		btnDogory.setText("DoGory");
-		
-		Button btnDodolu = new Button(shlSpaceImpact, SWT.NONE);
-		btnDodolu.setBounds(149, 306, 75, 25);
-		btnDodolu.setText("DoDolu");
-		
 		Label lblMapa = new Label(shlSpaceImpact, SWT.NONE);
-		lblMapa.setBounds(10, 420, 40, 15);
+		lblMapa.setBounds(793, 526, 40, 15);
 		lblMapa.setText("Mapa");
 		
 		Label lblMszer = new Label(shlSpaceImpact, SWT.NONE);
-		lblMszer.setBounds(56, 420, 55, 15);
+		lblMszer.setBounds(839, 526, 55, 15);
 		lblMszer.setText("Mszer");
 		
 		Label lblMwys = new Label(shlSpaceImpact, SWT.NONE);
-		lblMwys.setBounds(117, 420, 55, 15);
+		lblMwys.setBounds(900, 526, 55, 15);
 		lblMwys.setText("Mwys");
 		
 		Label lblWys = new Label(shlSpaceImpact, SWT.NONE);
-		lblWys.setBounds(56, 441, 55, 15);
+		lblWys.setBounds(839, 547, 55, 15);
 		
 		Label lblSzer = new Label(shlSpaceImpact, SWT.NONE);
-		lblSzer.setBounds(117, 441, 55, 15);
+		lblSzer.setBounds(900, 547, 55, 15);
 		
 		Label lblWidok = new Label(shlSpaceImpact, SWT.NONE);
-		lblWidok.setBounds(10, 441, 40, 15);
+		lblWidok.setBounds(793, 547, 40, 15);
 		lblWidok.setText("Widok");
 		
 		Label lblPostep = new Label(shlSpaceImpact, SWT.NONE);
-		lblPostep.setBounds(10, 462, 45, 15);
+		lblPostep.setBounds(793, 568, 45, 15);
 		lblPostep.setText("Postep");
 		
 		Label lblPos = new Label(shlSpaceImpact, SWT.NONE);
-		lblPos.setBounds(66, 462, 55, 15);
+		lblPos.setBounds(849, 568, 55, 15);
 		
 		dialog.setText("Start");
 		dialog.setMessage("Gotowe do grania");
@@ -80,7 +128,14 @@ public class Space_Impact {
 			shlSpaceImpact.close();
 		}
 		
-		TxT Gra = new TxT();
+		btnQuit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDown(MouseEvent e) {
+				shlSpaceImpact.close();
+			}
+		});
+		
+		
 		
 		shlSpaceImpact.open();
 		shlSpaceImpact.layout();
@@ -93,34 +148,6 @@ public class Space_Impact {
 		
 		lblMwys.setText(String.valueOf(Gra.Wysokosc));
 		lblMszer.setText(String.valueOf(Gra.Szerokosc));
-		
-		Button btnQuit = new Button(shlSpaceImpact, SWT.NONE);
-		btnQuit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseDown(MouseEvent e) {
-				shlSpaceImpact.close();
-			}
-		});
-		btnQuit.setBounds(56, 280, 75, 25);
-		btnQuit.setText("Quit");
-		
-		
-		//Listener
-		btnDogory.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseDown(MouseEvent e) {
-				Gra.WcisnietoKlawisz = true;
-				Gra.key = 'w';
-			}
-		});
-		btnDodolu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseDown(MouseEvent e) {
-				Gra.WcisnietoKlawisz = true;
-				Gra.key = 's';
-			}
-		});
-		
 		
 		while (!shlSpaceImpact.isDisposed()) { //Game loop
 			

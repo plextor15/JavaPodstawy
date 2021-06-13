@@ -15,10 +15,10 @@ public class TxT extends Engine {
 		for (int i = 0; i < WysokoscWidok; i++){
 			for (int j = 0; j < SzerokoscWidok; j++){
 				DoWyswietlenia += MapaWidoczna[i][j];
-				System.out.print(MapaWidoczna[i][j]);
+				//System.out.print(MapaWidoczna[i][j]);
 			}
 			DoWyswietlenia += "\n";
-			System.out.print("\n");
+			//System.out.print("\n");
 			//if (i+1 != WysokoscWidok) {
 			//	DoWyswietlenia += "\n";
 			//}
