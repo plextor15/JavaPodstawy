@@ -1,7 +1,9 @@
 package Space_Impact;
 
+import java.io.IOException;
 import java.io.File;
 import java.io.FileNotFoundException;
+//import java.io.StringReader;
 import java.util.Scanner;
 
 import Space_Impact.GameObject.Typ;
@@ -20,9 +22,9 @@ public abstract class Engine extends Level {
 	}
 	
 	public void Sterow() {
-		if (!WcisnietoKlawisz) {
-			key = 'd';
-		}
+		//if (!WcisnietoKlawisz) {
+		//	key = 'd';
+		//}
 
 		int WcoUderzylGracz = 0;
 		switch (key) {
@@ -72,13 +74,14 @@ public abstract class Engine extends Level {
 
 		}
 	}
-	public void Initialize() {
+	public void Initialize() /*throws IOException*/ {
 		char[] DataChar;
 		String DataStr;
 		
 		try {
 			File plik = new File("mapa.dat");
 			Scanner inic = new Scanner(plik);
+			
 			
 			DataStr = inic.nextLine();
 			Szerokosc = Integer.parseInt(DataStr);
@@ -106,12 +109,12 @@ public abstract class Engine extends Level {
 			inic.close();
 		}
 		catch (FileNotFoundException e) {
-		      System.out.println("An error occurred.");
+		      System.out.println("An error occurred. File problem");
 		      e.printStackTrace();
 		}
 	}
-	public void GameLoop() {
-		Initialize();
+	/*public void GameLoop() {
+		//Initialize();
 		
 		while (!exit){
 			Sterow();
@@ -128,7 +131,7 @@ public abstract class Engine extends Level {
 			AktualizacjaWidocznejMapy(Postep);
 			View();
 		}
-	}
+	}*/
 	public void ParserGameObject(char wyg, int i, int j) {
 		switch (wyg) {
 		case '.':

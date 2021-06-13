@@ -115,14 +115,14 @@ public class Level {
 		Typ UderzylW;
 		
 		switch (A){
-		case GORA: y = 1;
+		/*case GORA: y = 1;
 			break;
 		case DOL: y = -1;
 			break;
 		case PRAWO: x = 1;
 			break;
 		case LEWO: x = -1;
-			break;
+			break;*/
 		default: break;
 		}
 		

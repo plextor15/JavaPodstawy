@@ -2,8 +2,14 @@ package Space_Impact;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+
+import Space_Impact.Level.Kierunek;
+
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
+
+import java.util.Scanner;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.MouseAdapter;
@@ -18,12 +24,12 @@ public class Space_Impact {
 	public static void main(String[] args) {
 		Display display = Display.getDefault();
 		Shell shlSpaceImpact = new Shell();
-		shlSpaceImpact.setSize(1051, 805);
+		shlSpaceImpact.setSize(601, 367);
 		shlSpaceImpact.setText("Space Impact");
 		
-		Label lblTestowy = new Label(shlSpaceImpact, SWT.NONE);
-		lblTestowy.setBounds(10, 10, 659, 217);
-		lblTestowy.setText("testowy\ngugu");
+		Label lblWysw = new Label(shlSpaceImpact, SWT.NONE);
+		lblWysw.setBounds(10, 10, 552, 217);
+		lblWysw.setText("testowy\ngugu");
 		
 		MessageBox dialog = new MessageBox(shlSpaceImpact, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
 		
@@ -45,27 +51,12 @@ public class Space_Impact {
 		}
 		
 		TxT Gra = new TxT();
-		Gra.GameLoop();
 		
-		String info;
-		String info2;
-		if (Gra.czyWygral) {
-			info = "Poziom ukonczony :)\n";
-		}
-		else{
-			info = "Przegrana :(\n";
-		}
+		shlSpaceImpact.open();
+		shlSpaceImpact.layout();
 		
-		info2 = "Uzyskano punktow: " + String.valueOf(Gra.GetPunktyLevel());
+		Gra.Initialize();
 		
-		MessageBox dialog2 = new MessageBox(shlSpaceImpact, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
-		dialog.setText(info);
-		dialog.setMessage(info2);
-		int retCode = dialog2.open();
-		
-		if (retCode == 32) {
-			shlSpaceImpact.close();
-		}
 		
 		//Listener
 		btnDogory.addMouseListener(new MouseAdapter() {
@@ -83,13 +74,40 @@ public class Space_Impact {
 			}
 		});
 		
-
-		shlSpaceImpact.open();
-		shlSpaceImpact.layout();
-		while (!shlSpaceImpact.isDisposed()) {
+		
+		while (!shlSpaceImpact.isDisposed()) { //Game loop
+			
+			Gra.Sterow();
+			System.out.println(Gra.key);
+			if (Gra.GraczSzer != Gra.Szerokosc - 1) {
+				if (Gra.key != 'd'){
+					Gra.GraczWCosUderzyl(Gra.GraczUderzylW(Kierunek.PRAWO));
+					Gra.PrzesunGracza(1, Kierunek.PRAWO);
+				}
+			} else {
+				Gra.KoniecLevelu(true);
+			}
+			Gra.WcisnietoKlawisz = false;
+			Gra.Postep++;
+			Gra.AktualizacjaWidocznejMapy(Gra.Postep);
+			Gra.View();
+			
+			lblWysw.setText(Gra.DoWyswietlenia);
+			
+			//Sleep
+			try {
+				Thread.sleep(Gra.ileKlatka);
+			} catch (InterruptedException e) {
+				System.out.println("Klatka nie pykla");
+				e.printStackTrace();
+			}
+			
+			
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
 		}
+		
+		
 	}
 }

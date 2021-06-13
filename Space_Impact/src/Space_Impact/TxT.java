@@ -16,11 +16,18 @@ public class TxT extends Engine {
 			for (int j = 0; j < SzerokoscWidok; j++){
 				DoWyswietlenia += MapaWidoczna[i][j];
 			}
-			
-			if (i+1 != WysokoscWidok) {
-				DoWyswietlenia += "\n";
-			}
+			DoWyswietlenia += "\n";
+			//if (i+1 != WysokoscWidok) {
+			//	DoWyswietlenia += "\n";
+			//}
 		}
+		/*//Sleep
+		try {
+			Thread.sleep(ileKlatka);
+		} catch (InterruptedException e) {
+			System.out.println("Klatka nie pykla");
+			e.printStackTrace();
+		}*/
 	}
 	public void KoniecLevelu(boolean CzyWygrana) {
 		czyWygral = CzyWygrana;
