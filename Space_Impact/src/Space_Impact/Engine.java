@@ -1,6 +1,6 @@
 package Space_Impact;
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.io.File;
 import java.io.FileNotFoundException;
 //import java.io.StringReader;
@@ -73,6 +73,7 @@ public abstract class Engine extends Level {
 		default: break;
 
 		}
+		key = '`';
 	}
 	public void Initialize() /*throws IOException*/ {
 		char[] DataChar;
